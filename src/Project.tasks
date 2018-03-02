@@ -1,0 +1,51 @@
+Project:
+    ☐ @high User rights
+    ☐ @high Filter records by user's party
+    ☐ @high API controllers
+    ☐ @high User Authentication / Login 
+    ☐ Unit Price details will be added to transaction codes page. While invoice item is entered, unit price should be calculated by invoice date.
+    ☐ Currency definitions
+    ☐ Exchrate service and forms
+    ☐ Transactions and payments update by Currency
+    ☐ Exchrate rules (buying or sales by currencytype)  Turkey uses only TCMB sales exch.rate (not buying Exchrate)
+    ☐ Visiblities of tax transactions
+    ☐ error: ("error" in res ? res.error : null),
+    ☐ 
+
+    var that = this;
+    loop.map {
+        _.partial(that.onclick, insan)  
+    }
+
+    parent{
+
+        onClick(key) {
+        }
+    
+    }
+
+    child=(props)=>{
+        <....
+        onClick ={this.props.onClick.bind(this, this.props.task.key)}
+        />
+    }
+Documentation:
+    Request Data Formats:
+        ☐ getByPK   : api/controller/{pk}                               
+            returns model as json
+        ☐ get       : api/controller?qry={size, page, order, filter}    
+            returns { data: [], pages: numberOfPages, page: currentPage, msg: {type:"info/warning/danger", code:"" }
+    
+
+
+Setup:
+    Team-explorer-everywhere TFS cli:
+        ☐ Download TEE-CLC*.zip file from https://github.com/Microsoft/team-explorer-everywhere/releases
+        ☐ Extract zip file to /Library/Tfs directory
+        ☐ To Update path environment variable, open ~/.bash_profile
+        ☐ Add this line,  PATH="/Library/Tfs:${PATH}"
+        ☐ To apply changes $ ~/.bash_profile 
+
+
+         
+
