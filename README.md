@@ -1,3 +1,5 @@
+![capture1](https://user-images.githubusercontent.com/1851856/36906712-8ca87092-1e2e-11e8-8d68-834ebb024e66.PNG)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
