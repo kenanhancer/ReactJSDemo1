@@ -65,7 +65,6 @@ export class HkInputNumber extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(value) {
-        console.log(value);
         this.props.onChange({
             target: { name: this.props.name, value: value, primaryKey: this.props.primaryKey }
         });

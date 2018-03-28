@@ -30,6 +30,35 @@ Project:
         />
     }
 Documentation:
+    Authentication :
+        ☐ Response Json : 
+        {
+            auth:{token:'',session:''}, 
+            user:{ 
+                firstname : 'Hasan',
+                lastname : 'Ozgul',
+                email : 'ozgul.huseyin@gmail.com',
+                avatar:'https://randomuser.me/api/portraits/med/men/83.jpg',
+            },
+            menuItems: [{
+                key: "01",
+                icon: "bar-chart",
+                title: {tr:"Güncel Durum", en:"Dashboard",
+                subItems: [
+                    {
+                        key: "02",
+                        href: "/dashboard",
+                        icon: "dashboard",
+                        title: {tr:"Özet Durum",en:"Summary"},
+                    },
+                    {
+                        key: "keyd2",
+                        href: "/dashboard2",
+                        icon: "calendar",
+                        title: {tr:"Ödeme Planı",en:"PaymentPlan"}
+                    }
+                ]
+            }]
     Request Data Formats:
         ☐ getByPK   : api/controller/{pk}                               
             returns model as json

@@ -1,61 +1,58 @@
 import React from 'react';
-import { LocaleProvider, Layout } from 'antd';
-import PublishSubscribe from 'publish-subscribe-js';
+
+import { LocaleProvider, Layout, Row, Col } from 'antd';
 
 import trTR from 'antd/lib/locale-provider/tr_TR';
-import { AppMenu } from 'components/HkMenu.jsx';
+import enGB from 'antd/lib/locale-provider/en_GB';
+
+import HkMenu from 'components/HkMenu.jsx';
 import { HkLogo } from 'components/HkLogo.jsx';
 import { HkFooter } from 'components/HkFooter.jsx';
+import HkUser from 'components/HkUser.jsx';
+import HkLang from 'components/HkLang.jsx';
+import BaseComponent from 'components/BaseComponent.jsx';
+const { Header, Content, Sider } = Layout;
 
-const { Header, Content, Footer, Sider } = Layout;
-
-class PageLayout extends React.Component {
+class PageLayout extends BaseComponent {
     constructor(props) {
         super(props);
-        this.state = { collapsed: false, rect: { height: 720, width: 520 } };
-        this.onWindowResize = this.onWindowResize.bind(this);
+        this.state = { collapsed: false };
     }
 
     componentDidMount() {
-        this.resizeSubKey = PublishSubscribe.subscribe('resize', this.onWindowResize);
-        this.onWindowResize();
+        super.componentDidMount();
+        this.connect(['login', 'language', 'container']);
     }
 
-    componentWillUnmount() {
-        PublishSubscribe.unsubscribe('resize', this.resizeSubKey);
-    }
-
-    onWindowResize(rect) {
-        this.setState({ rect: rect });
-    }
-    // Sider style={{ backgroundColor: '#3e4a5a' }}
-    // Menu style={{ backgroundColor: '#3e4a5a' }} 
     render() {
-        return (
-            <LocaleProvider locale={trTR}>
+        return <LocaleProvider locale={this.state.language === "tr" ? trTR : enGB}>
+            <Layout>
+                <Sider
+                    breakpoint="lg"
+                    collapsedWidth="0"
+                    width="220"
+                    onCollapse={(collapsed, type) => { this.setState({ collapsed: collapsed }); }}>
+                    <HkLogo />
+                    <HkMenu theme="dark" mode="inline" items={this.state.menuItems} />
+                </Sider>
                 <Layout>
-                    <Sider
-                        breakpoint="lg"
-                        collapsedWidth="0"
-                        width="220"
-                        onCollapse={(collapsed, type) => { this.setState({ collapsed: collapsed }); }}>
-                        <HkLogo />
-                        <AppMenu />
-                    </Sider>
-                    <Layout>
-                        <Header style={{ paddingLeft: '10px', backgroundColor: '#28303c' }}>
-                            {this.state.collapsed && <HkLogo />}
-                        </Header>
-                        <Content style={{ margin: 10 }}>
-                            <div style={{ background: '#fff', padding: '5px', minHeight: '720px', minWidth: '380px' }}>
+                    <Header style={{ paddingLeft: '10px', backgroundColor: '#28303c' }}>
+                        <Row type="flex" align="middle" justify="end">
+                            <Col><HkUser user={this.state.user} /></Col>
+                            <Col style={{ paddingLeft: '15px' }}><HkLang /></Col>
+                        </Row>
+                    </Header>
+                    <Content style={{ margin: 10 }}>
+                        {this.state.rect &&
+                            <div style={{ background: '#fff', padding: '5px', minHeight: this.state.rect.height, height: this.state.rect.height, minWidth: '380px', overflow:'scroll' }}>
                                 {this.props.children}
                             </div>
-                        </Content>
-                        <HkFooter />
-                    </Layout>
+                        }
+                    </Content>
+                    <HkFooter />
                 </Layout>
-            </LocaleProvider>
-        );
+            </Layout>
+        </LocaleProvider>
     }
 }
 

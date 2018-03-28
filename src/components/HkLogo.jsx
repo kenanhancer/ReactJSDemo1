@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export const HkLogoImg = (props) => (
     <img className={props.className || "page-logo-content"}
@@ -11,15 +12,15 @@ HkLogoImg.propTypes = {
 }
 
 export const HkLogo = (props) => (
-    <div className="page-logo">
+    <Link to="/" className="page-logo">
         <HkLogoImg />
-    </div>
+    </Link>
 );
 
 export const HkLogoInvert = (props) => (
-    <div className="page-logo">
+    <Link to="/" className="page-logo">>
         <HkLogoImg suffix="invert" />
-    </div>
+    </Link>
 );
 
 //blue-6

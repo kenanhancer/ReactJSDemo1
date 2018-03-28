@@ -1,4 +1,4 @@
-import Locale from 'modules/Locale';
+import locale from 'locale';
 
 const patterns = {
     email: "^((([a-z]|\\d|[!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|"
@@ -18,28 +18,28 @@ class Validator
 {
     static isValid(fieldname, value, validation) {
         if (validation.required && !value) {
-            const title = Locale.getField(fieldname).title;
-            return Locale.getMessage('required', title);
+            const title = locale.getField(fieldname).title;
+            return locale.getMessage('required', title);
         }
 
         if (validation.pattern && validation.pattern in patterns) {
             let re = new RegExp(patterns[validation.pattern]);
             if (!re.test(value)) {
-                return Locale.getMessage(fieldname + "_pattern");
+                return locale.getMessage(fieldname + "_pattern");
             }
         }
 
         if (validation.min && value < validation.min)
-            return Locale.getMessage(fieldname + "_pattern");
+            return locale.getMessage(fieldname + "_pattern");
 
         if (validation.max && value > validation.max)
-            return Locale.getMessage(fieldname + "_pattern");
+            return locale.getMessage(fieldname + "_pattern");
 
         if (validation.minLength && value.length < validation.minLength)
-            return Locale.getMessage(fieldname + "_pattern");
+            return locale.getMessage(fieldname + "_pattern");
 
         if (validation.maxLength && value.length < validation.maxLength)
-            return Locale.getMessage(fieldname + "_pattern");
+            return locale.getMessage(fieldname + "_pattern");
 
         return null;
     } 

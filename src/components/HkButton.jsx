@@ -1,31 +1,34 @@
 import React from 'react';
 import { Button, Dropdown } from 'antd';
-import { HkMenu } from 'components/HkMenu.jsx';
-import Locale from 'modules/Locale';
+import HkMenu from 'components/HkMenu.jsx';
+import locale from 'locale';
 
 const buttonStyle = { fontWeight: 'bold', marginRight: 2 }
 const boldStyle = { fontWeight: 'bold' };
 
+export const HkNewButton = (props) => (
+    <Button type='primary' icon='plus' size='default' style={buttonStyle} disabled={props.disabled} onClick={props.onClick}>{locale.getButton('new')}</Button>
+)
 
 export const HkSaveButton = (props) => (
-    <Button type='primary' icon='save' size='default' style={buttonStyle} disabled={props.disabled} onClick={props.onClick}>{Locale.getButton('save')}</Button>
+    <Button type='primary' icon='save' size='default' style={buttonStyle} disabled={props.disabled} onClick={props.onClick}>{locale.getButton('save')}</Button>
 )
 
 export const HkCancelButton = (props) => (
-    <Button type='danger' icon='close-circle-o' size='default' style={buttonStyle} disabled={props.disabled} onClick={props.onClick}>{Locale.getButton('cancel')}</Button>
+    <Button type='danger' icon='close-circle-o' size='default' style={buttonStyle} disabled={props.disabled} onClick={props.onClick}>{locale.getButton('cancel')}</Button>
 )
 
 export const HkTableAddButton = (props) => (
     <Button type='primary' icon='plus' style={boldStyle} disabled={props.disabled} onClick={props.onClick} />
-);
+)
 
 export const HkTableRemoveButton = (props) => (
     <Button icon="close" size='small' style={{ fontWeight: 'bold', color: 'white', backgroundColor: 'red' }} disabled={props.disabled} onClick={props.onClick} />
-);
+)
 
 export const HkTableOptionsButton = (props) => (
     <Button type='danger' size='small' style={boldStyle} disabled={props.disabled} onClick={props.onClick}>{'...'}</Button>
-);
+)
 
 export class HkDropdownButton extends React.Component {
     constructor(props) {
@@ -54,9 +57,9 @@ export class HkDropdownButton extends React.Component {
     render() {
         let buttonTitle = null;
         if (this.props.dropdownMenu.currentAsButton && this.state.activeItem)
-            buttonTitle = this.state.activeItem.title || Locale.getButton(this.state.activeItem.name);
+            buttonTitle = this.state.activeItem.title || locale.getButton(this.state.activeItem.name);
         else
-            buttonTitle = this.props.title || Locale.getButton(this.props.name);
+            buttonTitle = this.props.title || locale.getButton(this.props.name);
 
         return (
             <Dropdown.Button style={buttonStyle} disabled={this.props.disabled} onClick={this.handleDropdownClick} overlay={this.getMenu()}>

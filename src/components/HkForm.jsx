@@ -1,17 +1,12 @@
 import React from 'react';
 import { Row, Col, Form, Divider } from 'antd';
-import { HkSaveButton, HkCancelButton, HkDropdownButton } from 'components/HkButton.jsx';
 
 export const HkTitle = (props) => (
     <div>
         <Row>
-            <Col span={6}><h2 className="page-title">{props.title}</h2></Col>
-            <Col span={18}>
-                <Row type="flex" justify="end">
-                    {props.onSave && <Col><HkSaveButton onClick={props.onSave} /></Col>}
-                    {props.dropdownMenu && <Col><HkDropdownButton dropdownMenu={props.dropdownMenu}/></Col>}
-                    {props.onCancel && <Col><HkCancelButton onClick={props.onCancel} /></Col>}
-                </Row>
+            <Col span={8}><h2 className="page-title">{props.title}</h2></Col>
+            <Col span={16}>
+                {props.children}
             </Col>
         </Row>
         <Divider className="page-title-divider" />
